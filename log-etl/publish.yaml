@@ -2,7 +2,7 @@ Type: Application
 Name: start-log-etl
 Provider:
   - 阿里云
-Version: 0.0.1
+Version: 0.0.2
 Description: 日志自动触发函数计算进行ETL示例
 HomePage: https://github.com/devsapp/start-log-etl
 Tags:
