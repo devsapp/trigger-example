@@ -6,11 +6,11 @@ from aliyun.log import LogClient
 
 
 def logClient(endpoint, creds):
-    logger = logging.getLogger()
-    logger.info('creds info')
-    logger.info(creds.access_key_id)
-    logger.info(creds.access_key_secret)
-    logger.info(creds.security_token)
+    # logger = logging.getLogger()
+    # logger.info('creds info')
+    # logger.info(creds.access_key_id)
+    # logger.info(creds.access_key_secret)
+    # logger.info(creds.security_token)
     client = LogClient(endpoint, creds.access_key_id,
                        creds.access_key_secret, creds.security_token)
     return client
@@ -18,8 +18,7 @@ def logClient(endpoint, creds):
 
 def handler(event, context):
     logger = logging.getLogger()
-    logger.info('start deal SLS data')
-    logger.info(event.decode().encode())
+    logger.info('start deal SLS data: {}'.format(event.decode().encode()))
     info_arr = json.loads(event.decode())
     return fetchdata(info_arr['source'], context)
 
