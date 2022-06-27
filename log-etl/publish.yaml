@@ -1,0 +1,103 @@
+Type: Application
+Name: start-log-etl
+Provider:
+  - 阿里云
+Version: 0.0.1
+Description: 日志自动触发函数计算进行ETL示例
+HomePage: https://github.com/devsapp/start-log-etl
+Tags:
+  - 日志服务触发器
+  - 日志流式处理
+  - 日志 ETL
+Category: 新手入门
+Service:
+  函数计算:
+    Authorities:
+      - AliyunFCFullAccess
+Parameters:
+  type: object
+  additionalProperties: false # 不允许增加其他属性
+  required: # 必填项
+    - region
+    - serviceName
+    - functionName
+    - triggerRoleArn
+    - logProject
+    - sourceLogstore
+    - jobLogstore
+  properties:
+    region:
+      title: 地域
+      type: string
+      default: cn-hangzhou
+      description: 创建应用所在的地区
+      enum:
+        - cn-beijing
+        - cn-hangzhou
+        - cn-shanghai
+        - cn-qingdao
+        - cn-zhangjiakou
+        - cn-huhehaote
+        - cn-shenzhen
+        - cn-chengdu
+        - cn-hongkong
+        - ap-southeast-1
+        - ap-southeast-2
+        - ap-southeast-3
+        - ap-southeast-5
+        - ap-northeast-1
+        - eu-central-1
+        - eu-west-1
+        - us-west-1
+        - us-east-1
+        - ap-south-1
+    serviceName:
+      title: 服务名
+      type: string
+      default: log-etl
+      description: 应用所属的函数计算服务
+    functionName:
+      title: 函数名
+      type: string
+      default: etl
+      description: 应用的函数名称
+    roleArn:
+      title: RAM角色ARN
+      type: string
+      default: ''
+      pattern: '^acs:ram::[0-9]*:role/.*$'
+      description: 应用所属的函数计算服务配置的 role, 请提前创建好对应的 role, 授信函数计算服务, 并配置好 AliyunLogFullAccess 和 AliyunFCDefaultRolePolicy policy。
+      required: true
+      x-role:
+        name: fclogrole
+        service: fc
+        authorities:
+          - AliyunLogFullAccess
+          - AliyunFCDefaultRolePolicy
+    triggerRoleArn:
+      title: 触发器RAM角色ARN
+      type: string
+      default: ''
+      pattern: '^acs:ram::[0-9]*:role/.*$'
+      description: 日志服务默认使用此角色来访问您在其他云产品中的资源
+      required: true
+      x-role:
+        name: aliyunlogetlrole
+        service: LOG
+        authorities:
+          - AliyunLogETLRolePolicy
+    logProject:
+      title: 日志项目
+      type: string
+      default: ''
+      description: 日志Project名称
+    sourceLogstore:
+      title: 函数名
+      type: string
+      default: ''
+      description: 触发源日志logstore名称, 触发器会定时从这个 logstore 中订阅数据, 然后触发函数，归属于上面的 logProject
+    jobLogstore:
+      title: 函数名
+      type: string
+      default: ''
+      description: 触发函数的过程中发生的异常和函数执行统计信息会记录到该 Logstore, 归属于上面的 logProject 
