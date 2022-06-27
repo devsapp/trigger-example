@@ -29,7 +29,7 @@ services:
     actions:
      pre-deploy:
        - run: s build --use-docker
-         path: ./code
+         path: ./
     props: # 组件的属性值
       region: ${vars.region}
       service: ${vars.service}
