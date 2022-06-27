@@ -13,7 +13,7 @@
 #   有问题快来钉钉群问一下吧：33947367
 # ------------------------------------
 edition: 1.0.0
-name: pdf2img-app
+name: log-etl-app
 access: "{{ access }}"
 
 vars: # 全局变量
@@ -24,12 +24,12 @@ vars: # 全局变量
     description: '日志自动触发函数计算进行ETL'
 
 services:
-  pdf2img: # 业务名称/模块名称
+  log-etl: # 业务名称/模块名称
     component:  fc
     actions:
      pre-deploy:
        - run: s build --use-docker
-         path: ./
+         path: ./code
     props: # 组件的属性值
       region: ${vars.region}
       service: ${vars.service}

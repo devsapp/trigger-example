@@ -2,7 +2,7 @@ Type: Application
 Name: start-log-etl
 Provider:
   - 阿里云
-Version: 0.0.2
+Version: 0.0.3
 Description: 日志自动触发函数计算进行ETL示例
 HomePage: https://github.com/devsapp/start-log-etl
 Tags:
@@ -14,6 +14,7 @@ Service:
   函数计算:
     Authorities:
       - AliyunFCFullAccess
+      - AliyunLogFullAccess
 Parameters:
   type: object
   additionalProperties: false # 不允许增加其他属性
@@ -92,12 +93,12 @@ Parameters:
       default: ''
       description: 日志Project名称
     sourceLogstore:
-      title: 函数名
+      title: 触发源日志logstore
       type: string
       default: ''
       description: 触发源日志logstore名称, 触发器会定时从这个 logstore 中订阅数据, 然后触发函数，归属于上面的 logProject
     jobLogstore:
-      title: 函数名
+      title: 触发器函数执行记录日志logstore
       type: string
       default: ''
-      description: 触发函数的过程中发生的异常和函数执行统计信息会记录到该 Logstore, 归属于上面的 logProject 
+      description: 日志服务触发函数的过程中发生的异常和函数执行统计信息会记录到该 Logstore, 归属于上面的 logProject 
