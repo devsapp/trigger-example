@@ -56,7 +56,7 @@
 
 ## 应用详情
 
-本应用是日志自动触发函数计算进行 ETL 示例, 通过 Serverless Devs 开发者工具，您只需要几步就能完成一个实习日志 ETL 的示例， 示例代码中留有`do your things` 区域。
+本应用是日志自动触发函数计算进行 ETL 示例, 通过 Serverless Devs 开发者工具，您只需要几步就能完成一个实时日志 ETL 的示例， 示例代码中留有`do your things` 区域。
 >  更多示例代码请参看 [aliyun-log-fc-functions](https://github.com/aliyun/aliyun-log-fc-functions)
 
 ![](https://img.alicdn.com/imgextra/i1/O1CN01HPxM2G1ISa3WHMLIP_!!6000000000892-2-tps-1644-844.png)
